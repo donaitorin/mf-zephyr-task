@@ -15,12 +15,6 @@ function App() {
 				<Header />
 			</Suspense>
 
-			{/* Shell body */}
-			<main className="p-8 text-3xl mx-auto max-w-6xl">
-				<div>Name: mf-zephyr-task – Shell</div>
-				<div>Framework: React 19</div>
-			</main>
-
 			{/* Content remote */}
 			<Suspense fallback={<div className="p-4">Loading content…</div>}>
 				<Content />

@@ -4,6 +4,15 @@ import * as RefreshPlugin from '@rspack/plugin-react-refresh';
 import { ModuleFederationPlugin } from '@module-federation/enhanced/rspack';
 import { withZephyr } from 'zephyr-rspack-plugin';
 
+export const isDev = process.env.NODE_ENV === 'development';
+export const headerUrl = isDev
+	? 'http://localhost:8082/mf-manifest.json'
+	: 'https://donai-torin-74-header-app-mf-zephyr-task-donaitor-ea3f0015c-ze.zephyrcloud.app';
+
+export const contentUrl = isDev
+	? 'http://localhost:8081/mf-manifest.json'
+	: 'https://donai-torin-75-content-app-mf-zephyr-task-donaito-481d27fdc-ze.zephyrcloud.app';
+
 const targets = ['chrome >= 87', 'edge >= 88', 'firefox >= 78', 'safari >= 14'];
 
 /**
@@ -24,8 +33,6 @@ export function makeConfig({
 	publicPath: string;
 	mfConfig: any;
 }) {
-	const isDev = process.env.NODE_ENV === 'development';
-
 	return withZephyr()({
 		context,
 		entry: { main: entry },
@@ -37,7 +44,7 @@ export function makeConfig({
 			historyApiFallback: true,
 		},
 
-		output: { uniqueName, publicPath },
+		output: { uniqueName, publicPath: !isDev ? 'auto' : `http://localhost:${port}/` },
 
 		experiments: { css: true },
 
