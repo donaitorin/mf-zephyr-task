@@ -6,11 +6,11 @@ import { withZephyr } from 'zephyr-rspack-plugin';
 
 export const isDev = process.env.NODE_ENV === 'development';
 export const headerUrl = isDev
-	? 'http://localhost:8082/mf-manifest.json'
+	? 'http://localhost:8082'
 	: 'https://donai-torin-82-header-app-mf-zephyr-task-donaitor-c64672124-ze.zephyrcloud.app';
 
 export const contentUrl = isDev
-	? 'http://localhost:8081/mf-manifest.json'
+	? 'http://localhost:8081'
 	: 'https://donai-torin-83-content-app-mf-zephyr-task-donaito-7ef37c7ea-ze.zephyrcloud.app';
 
 const targets = ['chrome >= 87', 'edge >= 88', 'firefox >= 78', 'safari >= 14'];
